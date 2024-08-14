@@ -21,9 +21,9 @@ class CartModel extends ChangeNotifier {
       'color': Colors.red,
     },
     {
-      'name': 'Pochacco',
+      'name': 'Cinnamoroll',
       'price': 15,
-      'image': 'lib/images/plush4.png',
+      'image': 'lib/images/chilemorron.png',
       'color': Colors.yellow,
     },
   ];
