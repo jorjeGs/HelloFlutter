@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:helloflutter/model/cart_model.dart';
 import 'package:provider/provider.dart';
 import 'pages/intro_page.dart';
 
@@ -12,10 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Kitty Plushes Store',
-      home: IntroPage(),
+    return ChangeNotifierProvider(
+      create: (context) => CartModel(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Kitty Plushes Store',
+        home: IntroPage(),
+      ),
     );
   }
 }

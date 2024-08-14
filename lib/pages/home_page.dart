@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../components/plushes_item_tile.dart';
+import '../model/cart_model.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -7,6 +9,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context)
   {
+    var cartModel = context.watch<CartModel>();
+    var items = cartModel.getItems();
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -39,10 +44,22 @@ class HomePage extends StatelessWidget {
             ),
 
             Expanded(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                child: ListView.builder(
+                itemCount: items.length,
                 itemBuilder: (context, index) {
-                  return PlushesItemTile();
+                  return Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 20,
+                  ),
+                  child: PlushesItemTile(
+                    id: items[index].id,
+                    itemName: items[index].itemName,
+                    itemPrice: items[index].itemPrice,
+                    itemImage: items[index].itemImage,
+                    color: items[index].color
+                  ),
+                  );
                 },
                 ),
             )
